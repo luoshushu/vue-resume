@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*::before{
+  box-sizing: border-box;
+}
+*::after{
+  box-sizing: border-box;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+ul,ol{list-style: none;}
+body{
+  font-family: -apple-system, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+  font-size: 14px;
+}
+
