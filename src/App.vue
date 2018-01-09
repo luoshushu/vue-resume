@@ -116,7 +116,7 @@
     z-index: 1; // background: #1682fb;
     overflow: hidden;
   }
-  main {
+  #app main {
     display: flex;
     flex: 1;
     background: #f2f6fc;
