@@ -1,6 +1,6 @@
 <template>
   <div id="app" v-bind:class="{previewMode:previewMode}">
-    <Login id="login" v-bind:class="{loginMode:loginMode}"  v-on:exitX="exitX"/>
+    <Login id="login" v-bind:class="{loginMode:loginMode}" v-on:exitX="exitX" />
     <Cephalosome class="cephalosome" v-on:preview="preview" v-on:login="login" />
     <!-- 头部导航 -->
     <main>
@@ -19,8 +19,6 @@
   import EditBox from "./components/EditBox";
   import ShowBox from "./components/ShowBox";
   import Login from "./components/Login";
-
-  
   export default {
     data() {
       return {
@@ -85,7 +83,7 @@
       EditBox,
       ShowBox,
       Login
-          }
+    }
   };
 </script>
 
@@ -109,32 +107,32 @@
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
-  }
-  .cephalosome {
-    position: relative;
-    box-shadow: 0px 0px 3px 2px hsla(0, 0, 0, 0.3);
-    z-index: 1; // background: #1682fb;
-    overflow: hidden;
-  }
-  #app main {
-    display: flex;
-    flex: 1;
-    background: #f2f6fc;
-    >.editBox {
-      background: #fff;
-      width: 36em;
-      margin: 16px 8px 16px 16px;
-      box-shadow: 0px 0px 1px 2px hsla(0, 0, 0, 0.1);
-      border-radius: 5px;
+    .cephalosome {
+      position: relative;
+      box-shadow: 0px 0px 3px 2px hsla(0, 0, 0, 0.3);
+      z-index: 1; // background: #1682fb;
       overflow: hidden;
     }
-    >.showBox {
-      background: #fff;
+    main {
+      display: flex;
       flex: 1;
-      margin: 16px 16px 16px 8px;
-      box-shadow: 0px 0px 1px 2px hsla(0, 0, 0, 0.1);
-      border-radius: 5px;
-      overflow: hidden;
+      background: #f2f6fc;
+      >.editBox {
+        background: #fff;
+        width: 36em;
+        margin: 16px 8px 16px 16px;
+        box-shadow: 0px 0px 1px 2px hsla(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      >.showBox {
+        background: #fff;
+        flex: 1;
+        margin: 16px 16px 16px 8px;
+        box-shadow: 0px 0px 1px 2px hsla(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+      }
     }
   }
   .previewMode>#Cephalosome {
@@ -145,7 +143,7 @@
   }
   .previewMode #ShowBox {
     max-width: 65vw;
-    margin: 16px auto;
+    margin: 16px auto !important;
   }
   #exitButton {
     display: none;
@@ -171,5 +169,4 @@
   #app>.loginMode {
     display: block;
   }
- 
 </style>
