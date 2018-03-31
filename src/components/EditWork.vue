@@ -3,17 +3,9 @@
     <h2>{{title}}</h2>
     <el-form>
       <div class="useless" v-for="(item,index) in workExperience" v-bind:key="index">
-       
         <el-form-item v-for="key in keys" v-bind:label="labels[key] || key" :key="key">
           <el-input v-model="item[key]" placeholder="请输入内容"></el-input>
         </el-form-item>
-
-        <!-- <el-form-item label="工作时间">
-            <el-input v-model="item.date"></el-input>
-          </el-form-item>
-          <el-form-item label="工作内容">
-            <el-input v-model="item.content"></el-input>
-          </el-form-item> -->
         <i class="el-icon-delete" v-on:click="ctrl(index)"></i>
       </div>
       <el-button v-on:click="addItem">添加</el-button>

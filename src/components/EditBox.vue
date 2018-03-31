@@ -109,7 +109,8 @@
     display: flex;
     >nav {
       width: 90px;
-      background: #2e7b87;
+      // background: #2e7b87;
+      background: #409EFF;
       >ol>li {
         text-align: center;
         padding: 16px;

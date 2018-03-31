@@ -3,24 +3,24 @@
   <div class="login">
     <div class="logo">
       <span>
-        <h2>RESUME</h2>
-        <p>高效-便捷-实用</p>
-      </span>
+          <h2>RESUME</h2>
+          <p>高效-便捷-实用</p>
+        </span>
       <span>
-        <svg class="icon" v-on:click="exitX">
-          <use xlink:href="#icon-fon8"></use>
-        </svg>
-      </span>
+          <svg class="icon" v-on:click="exitX">
+            <use xlink:href="#icon-fon8"></use>
+          </svg>
+        </span>
     </div>
-    <el-form  class="two" label-width="50px" @refer.prevent='login'>
+    <el-form class="two" label-width="50px" @refer.prevent='login'>
       <el-form-item label="账号" prop="pass">
         <el-input type="texe" auto-complete="off" v-model="formData.username"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
-        <el-input type="password" @keyup.enter.native="loginSubmit"  auto-complete="off" v-model="formData.password"></el-input>
+        <el-input type="password" @keyup.enter.native="loginSubmit" auto-complete="off" v-model="formData.password"></el-input>
       </el-form-item>
       <!-- <el-form-item> -->
-      <el-button type="primary"   @click="login('refer')">登录</el-button>
+      <el-button type="primary" @click="login('refer')">登录</el-button>
       <!-- </el-form-item> -->
     </el-form>
   </div>
@@ -41,25 +41,44 @@
     },
     methods: {
       //回车登录
-      loginSubmit(){
+      loginSubmit() {
         this.login()
       },
       exitX() {
         this.$emit("exitX");
       },
-
+      open3() {
+        this.$notify({
+          title: '恭喜你！！',
+          message: '登录成功',
+          type: 'success'
+        });
+      },
+      open4() {
+        this.$notify({
+          title: '警告',
+          message: '请输入账号或密码',
+          type: 'warning'
+        });
+      },
+      open6() {
+        this.$notify.error({
+          title: '登录失败',
+          message: '请重新登录'
+        });
+      },
       login: function() {
         if (this.formData.username === '') {
-          alert('请输入账号')
+          this.open4()
         } else if (this.formData.password === '') {
-          alert('请输入密码')
+          this.open4()
         } else {
-          AV.User.logIn(this.formData.username, this.formData.password).then((loginedUser) => {
-            console.log(loginedUser);
+           AV.User.logIn(this.formData.username, this.formData.password).then((loginedUser) => {
             bus.$emit("login", loginedUser.attributes.username)
-           login.style.display = "none"
-          }, function(error) {
-            alert('密码错误呗')
+            login.style.display = "none"
+            this.open3()
+          }, (error) =>{
+            this.open6()
           });
         }
       }
@@ -83,7 +102,7 @@
       font-family: Century Gothic;
       font-size: 24px;
       font-weight: bold;
-      color: #3fa5b6;
+      color: #409EFF;
       p {
         padding: 8px 0 32px 8px;
         font-size: 16px;
@@ -92,7 +111,7 @@
         width: 1em;
         height: 1em;
         vertical-align: -0.15em;
-        fill: #3fa5b6;
+        fill: #409EFF;
         overflow: hidden;
       }
     }

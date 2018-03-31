@@ -59,13 +59,13 @@
     >section {
       overflow: auto;
       >h2 {
-        border-bottom: 2px solid #3fa5b6;
-        color: #2e7b87;
+        border-bottom: 2px solid #eee;
+        color: rgba(0, 0, 0, 0.7);
         font-size: 30px;
         margin-bottom: 10px;
       }
       >h3 {
-        color: #2e7b87;
+        color: rgba(0, 0, 0, 0.7);
         text-align: left;
         background: rgba(0, 0, 0, 0.1);
         border-left: 3px solid #000;
