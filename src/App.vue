@@ -1,9 +1,10 @@
 <template>
-  <div id="app" v-bind:class="{previewMode:previewMode}">
-    <Login id="login" v-bind:class="{loginMode:loginMode}" v-on:exitX="exitX" />
-    <Cephalosome class="cephalosome" v-on:preview="preview" v-on:login="login" />
+  <div id="app"  v-bind:class="{previewMode:previewMode}">
+    <Login id="login" v-bind:class="{loginMode:loginMode}" v-on:exitX="exitX" v-on:login="login"/>
+    <SignUp id="signUp"  v-bind:class="{signUpMode:signUpMode}" v-on:exitX="exitX" />
+    <Cephalosome  class="cephalosome" v-on:preview="preview" v-on:login="login" v-on:signUp="signUp" />
     <!-- 头部导航 -->
-    <main>
+    <main v-on:click="hide">
       <EditBox v-bind:resume="resume" class="editBox" />
       <!-- 左边编辑器 -->
       <ShowBox v-bind:resume="resume" class="showBox" />
@@ -19,11 +20,14 @@
   import EditBox from "./components/EditBox";
   import ShowBox from "./components/ShowBox";
   import Login from "./components/Login";
+  import SignUp from "./components/SignUp";
+
   export default {
     data() {
       return {
         previewMode: false,
         loginMode: false,
+        signUpMode:false,
         resume: {
           // 声明数据
           profile: {
@@ -69,20 +73,42 @@
       },
       exitX() {
         this.loginMode = false;
+        this.signUpMode = false
       },
       preview() {
         this.previewMode = true;
+         this.signUpMode = false;
+        this.loginMode = false;
       },
-      login() {
+      login:function(data) {
         // this.previewMode = true;
         this.loginMode = true;
+        this.signUpMode = false;
+
+      },
+      signUp(){
+        this.signUpMode = true;
+        this.loginMode = false;
+
+        // console.log(signUp)
+      },
+      hideModal(){
+        this.signUpMode = false;
+        this.loginMode = false;
+        // console.log()
+      },
+      hide(){
+        this.signUpMode = false;
+        this.loginMode = false;
       }
+     
     },
     components: {
       Cephalosome,
       EditBox,
       ShowBox,
-      Login
+      Login,
+      SignUp
     }
   };
 </script>
@@ -131,7 +157,7 @@
         margin: 16px 16px 16px 8px;
         box-shadow: 0px 0px 1px 2px hsla(0, 0, 0, 0.1);
         border-radius: 5px;
-        overflow: hidden;
+        overflow: auto;
       }
     }
   }
@@ -154,7 +180,7 @@
     top: 16px;
     right: 16px;
   }
-  #login {
+  #login,#signUp{
     display: none;
     background: #fff;
     border-radius: 16px;
@@ -166,7 +192,7 @@
     transform: translate(-50%, -50%);
     z-index: 2;
   }
-  #app>.loginMode {
+  #app>.loginMode,#app>.signUpMode  {
     display: block;
   }
 </style>

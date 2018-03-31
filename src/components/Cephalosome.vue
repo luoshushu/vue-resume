@@ -4,23 +4,52 @@
       RESUME
     </div>
     <div class="actions">
-      <el-button round v-on:click="login">登录/注册</el-button>
+      <el-button round v-on:click="signUp">{{msg}}</el-button>
+      <el-button round v-on:click="login">{{exit}}</el-button>
       <el-button round v-on:click="preview">预览</el-button>
     </div>
   </div>
 </template>
 
 <script>
+  import bus from "../assets/ligature";
+  import AV from "leancloud-storage"; //注意一要引入AV
   export default {
+    data(){
+      return{
+        msg:"免费注册",
+        exit:"立即登录",
+        currentUser:null
+      }
+    },
+    mounted() {
+      //监听A组件中的spot，并接受数据
+      bus.$on("login", (msg) =>{
+        if(this.msg = '你好！' + msg){
+          this.exit = '退出'
+        }     
+      });
+    },
     methods: {
       preview() {
-        //  alert('dd')
         this.$emit("preview");
+       
       },
       login() {
         this.$emit("login");
-      }
+        if(this.exit === "退出"){
+          console.log(11)
+          AV.User.logOut()
+        this.currentUser = null
+        window.location.reload()
+        }
+      },
+      signUp(){
+        this.$emit("signUp")
+      },
+   
     }
+  
   };
 </script>
 
