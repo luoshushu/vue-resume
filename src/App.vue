@@ -11,7 +11,7 @@
       <!-- 右边预览 -->
     </main>
     <el-button id="exitButton" v-on:click="exitButton" round>退出</el-button>
-    <el-button id="download" v-on:click="download" round>下载</el-button>
+    <el-button id="download" v-on:click="download" round>导出</el-button>
   </div>
 </template>
 

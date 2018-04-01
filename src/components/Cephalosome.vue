@@ -6,7 +6,7 @@
     <div class="actions">
       <el-button round v-on:click="signUp">{{msg}}</el-button>
       <el-button round v-on:click="login">{{exit}}</el-button>
-      <el-button round v-on:click="preview">预览/下载</el-button>
+      <el-button round v-on:click="preview">预览/导出</el-button>
     </div>
   </div>
 </template>

@@ -3,53 +3,47 @@
     <nav>
       <ol>
         <li v-bind:class="{active: currentTab === 0}" v-on:click="currentTab = 0 ">
-          <el-tooltip class="item" effect="dark" content="个人信息" placement="right-end">
-            <svg class="icon">
-                <use xlink:href="#icon-fon1"></use>
-             </svg>
-          </el-tooltip>
+          <svg class="icon">
+            <use xlink:href="#icon-fon1"></use>
+          </svg>
+          <p>AboutMe</p>
         </li>
         <li v-bind:class="{active: currentTab === 1}" v-on:click="currentTab = 1 ">
-          <el-tooltip class="item" effect="dark" content="工作经历" placement="right-end">
-            <svg class="icon">
-                 <use xlink:href="#icon-fon2"></use>
-              </svg>
-          </el-tooltip>
+          <svg class="icon">
+              <use xlink:href="#icon-fon2"></use>
+          </svg>
+          <p>Word</p>
         </li>
         <li v-bind:class="{active: currentTab === 2}" v-on:click="currentTab = 2 ">
-          <el-tooltip class="item" effect="dark" content="项目经历" placement="right-end">
-            <svg class="icon">
-                <use xlink:href="#icon-fon3"></use>
-            </svg>
-          </el-tooltip>
+          <svg class="icon">
+                  <use xlink:href="#icon-fon3"></use>
+              </svg>
+              <p>Project</p>
         </li>
         <li v-bind:class="{active: currentTab === 3}" v-on:click="currentTab = 3 ">
-          <el-tooltip class="item" effect="dark" content="教育信息" placement="right-end">
-            <svg class="icon">
-               <use xlink:href="#icon-fon4"></use>
-            </svg>
-          </el-tooltip>
+          <svg class="icon">
+                 <use xlink:href="#icon-fon4"></use>
+              </svg>
+              <p>Education</p>
         </li>
         <li v-bind:class="{active: currentTab === 4}" v-on:click="currentTab = 4 ">
-          <el-tooltip class="item" effect="dark" content="获奖情况" placement="right-end">
-            <svg class="icon">
-              <use xlink:href="#icon-fon5"></use>
-            </svg>
-          </el-tooltip>
+          <svg class="icon">
+                <use xlink:href="#icon-fon5"></use>
+              </svg>
+              <p>Awards</p>
         </li>
         <li v-bind:class="{active: currentTab === 5}" v-on:click="currentTab = 5 ">
-          <el-tooltip class="item" effect="dark" content="联系方式" placement="right-end">
-            <svg class="icon">
-                 <use xlink:href="#icon-fon6"></use>
-             </svg>
-          </el-tooltip>
+          <svg class="icon">
+                   <use xlink:href="#icon-fon6"></use>
+               </svg>
+               <p>Contact</p>
         </li>
       </ol>
     </nav>
     <ol class="write">
       <!-- <li v-for = "i in  [0,1,2,3,4,5]"  v-bind:class = "{active: currentTab === i}" >
-                          tab{{i + 1}}
-                        </li> -->
+                            tab{{i + 1}}
+                          </li> -->
       <li v-bind:class="{active: currentTab === 0}">
         <EditPersonal v-bind:profile="resume.profile" />
       </li>
@@ -108,15 +102,18 @@
   #EditBox {
     display: flex;
     >nav {
-      width: 90px;
-      // background: #2e7b87;
+      width: 90px; // background: #2e7b87;
       background: #409EFF;
       >ol>li {
+        color: #fff;
         text-align: center;
         padding: 16px;
       }
       & .active {
         background: #fff;
+        >p {
+          color: #000;
+        }
         >.icon {
           fill: #000;
         }

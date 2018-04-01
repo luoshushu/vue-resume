@@ -13,13 +13,20 @@
         <el-input v-model="profile.bitrh" placeholder="请输入出生年月"></el-input>
       </el-form-item>
     </el-form>
+    <Imges/>
   </div>
 </template>
 
 <script>
+ 
+  import Imges from './Imges.vue'
   export default {
-    props: ['profile']
-  };
+    props: ['profile'],
+    components: {
+      Imges
+    }
+  }
+  
 </script>
 
 
