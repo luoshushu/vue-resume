@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  console.log(document)
   import Cephalosome from "./components/Cephalosome";
   import EditBox from "./components/EditBox";
   import ShowBox from "./components/ShowBox";
@@ -90,7 +89,6 @@
       signUp() {
         this.signUpMode = true;
         this.loginMode = false;
-        // console.log(signUp)
       },
       hideModal() {
         this.signUpMode = false;
@@ -102,37 +100,23 @@
       },
       download() {
         html2canvas(document.querySelector('.showBox')).then(
-          function(canvas) {
-            console.log(canvas.width)
-            var contentWidth = canvas.width;
-            var contentHeight = canvas.height;
-            //一页pdf显示html页面生成的canvas高度;
-            var pageHeight = contentWidth / 595.28 * 841.89;
-            //未生成pdf的html页面高度
-            var leftHeight = contentHeight;
-            //pdf页面偏移
-            var position = 0;
-            //a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
-            var imgWidth = 595.28;
-            var imgHeight = 595.28 / contentWidth * contentHeight;
-            var pageData = canvas.toDataURL('image/jpeg', 1.0);
-            var pdf = new jsPDF('', 'pt', 'a4');
-            //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
-            //当内容未超过pdf一页显示的范围，无需分页
-            if (leftHeight < pageHeight) {
-              pdf.addImage(pageData, 'JPEG', 20, 0, imgWidth, imgHeight);
-            } else {
-              while (leftHeight > 0) {
-                pdf.addImage(pageData, 'JPEG', 20, position, imgWidth, imgHeight)
-                leftHeight -= pageHeight;
-                position -= 841.89;
-                //避免添加空白页
-                if (leftHeight > 0) {
-                  pdf.addPage();
-                }
-              }
+          (canvas) => {
+            let imgData = canvas.toDataURL('image/JPEG');
+            let imgWidth = 210;
+            let pageHeight = 295;
+            let imgHeight = canvas.height * imgWidth / canvas.width;
+            let heightLeft = imgHeight;
+            let doc = new jsPDF('p', 'mm');
+            let position = 0;
+            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            while (heightLeft >= 0) {
+              position = heightLeft - imgHeight;
+              doc.addPage();
+              doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
             }
-            pdf.save('resume.pdf');
+            doc.save('Resume.pdf');
           }
         )
       }
