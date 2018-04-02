@@ -14,7 +14,7 @@
             <span>期望城市：{{resume.profile.city || '广州'}}</span>
           </div>
           <div class="print">
-            <img src="http://lc-9ojuxqtj.cn-n1.lcfile.com/ab66cec33863c078bb75.png?imageView/2/w/100/h/200/q/100/format/png" alt="">
+            <img src="../assets/logo.png" alt="">
           </div>
         </div>
       </section>

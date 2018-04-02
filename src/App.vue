@@ -21,8 +21,8 @@
   import ShowBox from "./components/ShowBox";
   import Login from "./components/Login";
   import SignUp from "./components/SignUp";
-  import html2canvas from 'html2canvas';
-  import jsPDF from 'jsPDF';
+  import html2canvas from "html2canvas";
+  import jsPDF from "jsPDF";
   export default {
     data() {
       return {
@@ -71,15 +71,17 @@
     methods: {
       exitButton() {
         this.previewMode = false;
+        document.body.style.setProperty("height", "100%", "important");
       },
       exitX() {
         this.loginMode = false;
-        this.signUpMode = false
+        this.signUpMode = false;
       },
       preview() {
         this.previewMode = true;
         this.signUpMode = false;
         this.loginMode = false;
+        document.body.style.setProperty("height", "auto", "important");
       },
       login() {
         // this.previewMode = true;
@@ -99,26 +101,25 @@
         this.loginMode = false;
       },
       download() {
-        html2canvas(document.querySelector('.showBox')).then(
-          (canvas) => {
-            let imgData = canvas.toDataURL('image/JPEG');
-            let imgWidth = 210;
-            let pageHeight = 295;
-            let imgHeight = canvas.height * imgWidth / canvas.width;
-            let heightLeft = imgHeight;
-            let doc = new jsPDF('p', 'mm');
-            let position = 0;
-            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        //  window.print()
+        html2canvas(document.querySelector(".showBox")).then(canvas => {
+          let imgData = canvas.toDataURL("image/JPEG");
+          let imgWidth = 210;
+          let pageHeight = 295;
+          let imgHeight = canvas.height * imgWidth / canvas.width;
+          let heightLeft = imgHeight;
+          let doc = new jsPDF("p", "mm");
+          let position = 0;
+          doc.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          while (heightLeft > 0) {
+            position = heightLeft - imgHeight;
+            doc.addPage();
+            doc.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
-            while (heightLeft >= 0) {
-              position = heightLeft - imgHeight;
-              doc.addPage();
-              doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-              heightLeft -= pageHeight;
-            }
-            doc.save('Resume.pdf');
           }
-        )
+          doc.save("Resume.pdf");
+        });
       }
     },
     components: {
@@ -136,7 +137,7 @@
   body,
   #app {
     height: 100%;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
   }
   .icon {
@@ -147,8 +148,7 @@
     overflow: hidden;
   }
   #app {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    /* height: 100vh; */
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; // height: 100vh;
     display: flex;
     flex-direction: column;
     .cephalosome {
@@ -188,6 +188,12 @@
   .previewMode #ShowBox {
     max-width: 65vw;
     margin: 16px auto !important;
+  }
+  .previewMode html,
+  body,
+  #app {
+    height: none;
+    overflow: visible;
   }
   #exitButton,
   #download {
