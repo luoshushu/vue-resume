@@ -67,8 +67,11 @@
           <el-form-item label="手机">
             <el-input v-model="resume.contact.mobile" placeholder="请输入手机"></el-input>
           </el-form-item>
-          <el-form-item label="微信">
-            <el-input v-model="resume.contact.WeChat" placeholder="请输入微信"></el-input>
+             <el-form-item label="微信">
+            <el-input v-model="resume.contact.WeChat" placeholder="请输入手机"></el-input>
+          </el-form-item>
+          <el-form-item label="博客">
+            <el-input v-model="resume.contact.blogger" placeholder="请输入微信"></el-input>
           </el-form-item>
           <el-form-item label="邮箱">
             <el-input v-model="resume.contact.email" placeholder="请输入邮箱"></el-input>

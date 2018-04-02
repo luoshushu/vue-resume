@@ -1,14 +1,18 @@
 <template>
   <div>
-    <div  class="file">
-      上传图片
+    <div class="file">
+      <p>上传图片</p>
       <input type="file" @change="onFileChange" />
+      <p>{{percentage + '%'}}</p>
+      <img v-bind:src="imgUrl" >
     </div>
   </div>
 </template>
 
-<style>
-.file {
+<style lang="scss">
+  .file {
+    width: 125px;
+    height: 120px;
     position: relative;
     display: inline-block;
     background: #D0EEFF;
@@ -20,32 +24,47 @@
     text-decoration: none;
     text-indent: 0;
     line-height: 20px;
-}
-.file input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-}
-.file:hover {
+    >input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+    }
+    >p {
+      text-align: center;
+    } 
+  
+  }
+  .file:hover {
     background: #AADFFD;
     border-color: #78C3F3;
     color: #004974;
     text-decoration: none;
-}
+  }
 </style>
 
 <script>
   import AV from "leancloud-storage"; //注意一要引入AV
   export default {
+    data() {
+      return {
+        percentage: 0,
+        imgUrl: ''
+      }
+    },
     methods: {
       plan() {
         return {
           onprogress: e => {
+            this.percentage = Math.ceil(e.percent)
             console.log(Math.ceil(e.percent)); //上传后进度条
           }
         };
+      },
+      okImg(file) {
+        this.imgUrl = file.thumbnailURL(100, 200);
+        console.log(this.imgUrl);
       },
       onFileChange(e) {
         let imgLength = e.target.files.length;
@@ -59,9 +78,8 @@
             file.save(this.plan()).then(
               (file) => {
                 // 文件保存成功
-                console.log(file.url());
-                var url = file.thumbnailURL(400, 400);
-                console.log(url);
+                // console.log(file.url());
+                this.okImg(file)
               },
               function(error) {
                 // 异常处理
