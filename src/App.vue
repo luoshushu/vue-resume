@@ -102,7 +102,11 @@
       },
       download() {
         //  window.print()
+   
         html2canvas(document.querySelector(".showBox")).then(canvas => {
+    //     var opts = {useCORS: true};
+
+    // html2canvas(element, opts);
           let imgData = canvas.toDataURL("image/JPEG");
           let imgWidth = 210;
           let pageHeight = 295;

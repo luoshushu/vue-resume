@@ -14,7 +14,7 @@
             <span>期望城市：{{resume.profile.city || '广州'}}</span>
           </div>
           <div class="print">
-            <img src="../assets/logo.png" alt="">
+            <Imges/>
           </div>
         </div>
       </section>
@@ -52,8 +52,9 @@
 
 <style lang="scss">
   #ShowBox {
-    font-size: 18px;
-    padding-top:30px;
+    font-size: 16px;
+    padding-top: 30px;
+    color: rgba(0, 0, 0, 0.6);
     >.motto {
       background: #000;
       color: #fff;
@@ -61,8 +62,7 @@
     }
     >#show {
       padding: 0 32px 32px 32px;
-      overflow: auto;
-      color: rgba(0, 0, 0, 0.7);
+      overflow: auto; // color: rgba(0, 0, 0, 0.7);
       >section {
         overflow: auto;
         >.message {
@@ -77,8 +77,8 @@
               font-size: 16px;
             }
             >h2 {
-              color: rgba(0, 0, 0, 0.7);
-              font-size: 32px;
+              color: rgba(0, 0, 0, 0.6);
+              font-size: 30px;
               margin-bottom: 10px;
             }
           }
@@ -119,8 +119,12 @@
 </style>
 
 <script>
+  import Imges from "./Imges.vue";
   export default {
     props: ["resume"],
+    components: {
+      Imges
+    },
     methods: {
       filter(array) {
         //找出非空对象

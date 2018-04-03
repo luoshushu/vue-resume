@@ -1,24 +1,22 @@
 <template>
   <div>
     <div class="file">
-      <p>上传图片</p>
       <input type="file" @change="onFileChange" />
-      <p>{{percentage + '%'}}</p>
-      <img v-bind:src="imgUrl" >
+      <p id="pp">{{percentage + '%'}}</p>
+      <img v-bind:src="imgUrl" alt="上传120 x 130图片">
     </div>
   </div>
 </template>
 
 <style lang="scss">
   .file {
-    width: 125px;
-    height: 120px;
+    // width: 120px;
+    height: 130px;
     position: relative;
     display: inline-block;
     background: #D0EEFF;
     border: 1px solid #99D3F5;
-    border-radius: 4px;
-    padding: 4px 12px;
+    border-radius: 4px; // padding: 4px 12px;
     overflow: hidden;
     color: #1E88C7;
     text-decoration: none;
@@ -31,10 +29,14 @@
       top: 0;
       opacity: 0;
     }
+    >img {
+      width: 120px;
+      height: 130px;
+      vertical-align: middle;
+    }
     >p {
       text-align: center;
-    } 
-  
+    }
   }
   .file:hover {
     background: #AADFFD;
@@ -58,12 +60,15 @@
         return {
           onprogress: e => {
             this.percentage = Math.ceil(e.percent)
+            if (this.percentage === 100) {
+              document.getElementById("pp").style.display = "none"
+            }
             console.log(Math.ceil(e.percent)); //上传后进度条
           }
         };
       },
       okImg(file) {
-        this.imgUrl = file.thumbnailURL(100, 200);
+        this.imgUrl = file.thumbnailURL(120, 600);
         console.log(this.imgUrl);
       },
       onFileChange(e) {
