@@ -87,11 +87,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            >img {
-              width: 120px;
-              height: 130px;
-              border: 2px solid #eee;
-            }
+           
           }
         }
         >h3 {
