@@ -62,7 +62,7 @@
     }
     >#show {
       padding: 0 32px 32px 32px;
-      overflow: auto; // color: rgba(0, 0, 0, 0.7);
+      overflow: auto; 
       >section {
         overflow: auto;
         >.message {

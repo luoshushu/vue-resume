@@ -16,7 +16,7 @@
     display: inline-block;
     background: #d0eeff;
     border-radius: 4px;
-    border: 1px solid #1e88c7;
+    border: 1px solid #767171;
     overflow: hidden;
     text-decoration: none;
     text-indent: 0;
@@ -47,7 +47,7 @@
     text-decoration: none;
   }
   .file::after {
-    content: "上传头像";
+    content: "上传头像jpg/png/jpeg";
     display: block;
     position: absolute;
     top: 50%;
@@ -72,16 +72,11 @@
         return {
           onprogress: e => {
             this.percentage = Math.ceil(e.percent);
-            console.log(Math.ceil(e.percent)); //上传后进度条
+            // console.log(Math.ceil(e.percent)); //上传后进度条
           }
         };
       },
-      okImg(file) {
-        this.imgUrl = file.url();
-        // console.log(file.url());
-        // this.imgUrl = file.thumbnailURL(120, 600);
-        // console.log(this.imgUrl);
-      },
+    
       onFileChange(evt) {
         let files = evt.target.files;
         let f = files[0];
@@ -115,7 +110,7 @@
             file.save(this.plan()).then(
               file => {
                 // 文件保存成功
-                this.okImg(file);
+                console.log(file);
               },
               function(error) {
                 // 异常处理
